@@ -731,33 +731,50 @@ const veryHardQuestions = [
     }
 ]
 
-
+// Initialisieren des FragenIndex
 let currentQuestionIndex = 0;
 
+// Initialisieren der Doc-Constanten
 const frageElement = document.getElementById('frage');
 const oberesGitter = document.getElementById('knopf-gitterOben');
 const unteresGitter = document.getElementById('knopf-gitterUnten');
 const preisElement = document.getElementById('derzeitiger-preis');
+
+// Initialisieren des Reset-Knopfs und setzen des EventListeners
+const resetKnopf = document.getElementById('resetKnopf').addEventListener('click',endGame);;
+
+// Deklarieren der Variablen
+// Preis
 let preis;
+// Fragen-Arrays
 let veryhardQuestionArray = [];
 let hardQuestionArray = [];
 let averageQuestionArray = [];
 let easyQuestionArray = [];
+// Derzeitiger Stand
 let selectedIndexes;
+// Fragen-Counter
 let veryHardCounter;
 let hardCounter;
 let averageCounter;
 let easyCounter;
 
+// Start-Game Funktion. Hier soll die Localstorage nach 
+// gespeicherten informationen geprüft werden
+
 function startGame() {
+    // Localstorage Check
     const savedPreis = localStorage.getItem('preis');
-    const savedIndex = localStorage.getItem('currentQuestionIndex')
+    const savedIndex = localStorage.getItem('currentQuestionIndex');
+    
+    // Extrahieren des Fragen-Stands aus dem Localstorage
     if (savedIndex){
         currentQuestionIndex = parseInt(savedIndex, 10);
     } else {
         currentQuestionIndex = 0;
     }
     
+    // Extrahieren des Gewinns aus dem Localstorage
     if (savedPreis !== null) {
         preis = parseInt(savedPreis, 10);
         preisElement.innerText = "" + preis + " €";
@@ -765,23 +782,28 @@ function startGame() {
         preis = 0;
     }
 
+    // Laden der Fragen aus dem Localstorage
     const savedVeryHardQuestions = localStorage.getItem('veryhardQuestionArray');
     const savedHardQuestions = localStorage.getItem('hardQuestionArray');
     const savedAverageQuestions = localStorage.getItem('averageQuestionArray');
     const savedEasyQuestions = localStorage.getItem('easyQuestionArray');
+    // Laden der Fragencounter aus dem Localstorage
     const veryHardQCounter = localStorage.getItem('veryHardQCounter')
     const hardQCounter = localStorage.getItem('hardQCounter')
     const averageQCounter = localStorage.getItem('averageQCounter')
     const easyQCounter = localStorage.getItem('easyQCounter')
-
+    // Setzen der Fragenarrays falls Localstorage vorhanden war
     if (savedVeryHardQuestions && savedHardQuestions && savedAverageQuestions && savedEasyQuestions) {
         veryhardQuestionArray = JSON.parse(savedVeryHardQuestions);
         hardQuestionArray = JSON.parse(savedHardQuestions);
         averageQuestionArray = JSON.parse(savedAverageQuestions);
         easyQuestionArray = JSON.parse(savedEasyQuestions);
+        // Ansonsten: Erstellen neuer Fragen
     } else {
         setQuestions();
     }
+    
+    // Setzen der Fragencounter falls Localstorage vorhanden war
     if(veryHardQCounter && hardQCounter && averageQCounter && easyQCounter){
         veryHardCounter = JSON.parse(veryHardQCounter);
         hardCounter = JSON.parse(hardQCounter);
@@ -793,26 +815,39 @@ function startGame() {
         hardCounter = 0;
         averageCounter = 0;
         easyCounter = 0;
+    
+        // Ansetzen der nächsten Frage
     }
     setNextQuestion();
 }
 
+// Funktion zum beenden des spiels, leeren der localstorage und neuladen der Seite
 function endGame() {
     alert('Das Spiel wurde beendet. Dein Preis: ' + preis + ' €');
     localStorage.clear();
     window.location.reload();
 }
 
+// Die 20 ist die derzeitige statisch eingetragene Array-Länge der Frage-Arrays
+// Es wird zufaellig eine Zahl zwischen 0 und 19 generiert und abgerundet
 function getRandomIndex() {
-    return Math.floor(Math.random() * 20); // Die 20 ist die derzeitige statisch eingetragene Array-Länge der Frage-Arrays
+    return Math.floor(Math.random() * 20);
 }
 
-//Diese Funktion stellt NICHT sicher, dass alle Question-Arrays gleich lang sind. "Zufällig" hat jedes Array 20 fragen
+// Diese Funktion stellt NICHT sicher, dass alle Question-Arrays gleich lang sind. 
+// "Zufaellig" hat jedes Array 20 fragen
+
 function setQuestions(){
+    // Erstellen eines Index-Sets
     selectedIndexes = new Set();
+    // Fuellen der Question-Arrays -> Solange das Array 5 oder weniger
+    // einzigartige Zahlen aufweist, wird das Array befuellt
     while (selectedIndexes.size <= 5){
         selectedIndexes.add(getRandomIndex());
     }
+    
+    // Die Question-Arrays werden alle mit Fragen befuellt indem die 
+    // generierten Indizes die Hardcodierten Fragen durchlaufen
     const selectedArray = Array.from(selectedIndexes);
     for(let i = 0; i < selectedArray.length; i++){
         veryhardQuestionArray[i] = veryHardQuestions[selectedArray[i]];
@@ -820,20 +855,28 @@ function setQuestions(){
         averageQuestionArray[i] = averageQuestions[selectedArray[i]];
         easyQuestionArray[i] = easyQuestions[selectedArray[i]];
     }
+    
+    // Die selektierten Fragen werden als Item in die Localstorage gespeichert
     localStorage.setItem('veryhardQuestionArray', JSON.stringify(veryhardQuestionArray));
     localStorage.setItem('hardQuestionArray', JSON.stringify(hardQuestionArray));
     localStorage.setItem('averageQuestionArray', JSON.stringify(averageQuestionArray));
     localStorage.setItem('easyQuestionArray', JSON.stringify(easyQuestionArray));
 }
 
+// Diese Funktion setzt die naechsten Fragen
 function setNextQuestion() {
+    // Uebergabe des derzeitigen Fragenindex in die Localstorage
     localStorage.setItem('currentQuestionIndex', JSON.stringify(currentQuestionIndex))
     localStorage.setItem('veryHardQCounter', JSON.stringify(veryHardCounter));
     localStorage.setItem('hardQCounter', JSON.stringify(hardCounter));
     localStorage.setItem('averageQCounter', JSON.stringify(averageCounter));
     localStorage.setItem('easyQCounter', JSON.stringify(easyCounter));
+    
+    // leeren der Antwort-Container
     resetState();
-    if(currentQuestionIndex > 15){
+
+    // festlegen anhand des Index', welche Art von Frage eingebaut wird
+    if(currentQuestionIndex >= 14){
         showQuestion(veryhardQuestionArray[veryHardCounter]);
         veryHardCounter++;}
     else if(currentQuestionIndex > 10){
@@ -850,19 +893,27 @@ function setNextQuestion() {
     }
 }
 
+// Funktion zum befuellen des Fragen-containers
 function showQuestion(question) {
     frageElement.innerText = question.question;
     const grid1 = document.getElementById('knopf-gitterOben');
     const grid2 = document.getElementById('knopf-gitterUnten');
+    
+    // durchlaufen der Antwort-container und befuellen mit neuen Antworten
     for (let i = 0; i < question.answers.length; i++) {
         const answer = question.answers[i];
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('knpf');
+        
+        // festlegen der richtigen Antwort
         if (answer.correct) {
             button.dataset.correct = answer.correct;
         }
+        // setzen des Listeners
         button.addEventListener('click', selectAnswer);
+        
+        // aufteilen der Buttons in oberes und unteres Gitter
         if (i < 2) {
             grid1.appendChild(button);
         } else {
@@ -870,6 +921,7 @@ function showQuestion(question) {
         }
     }
 }
+// Funktion zum leeren der Antwort-container
 function resetState() {
     while (oberesGitter.firstChild || unteresGitter.firstChild) {
         oberesGitter.removeChild(oberesGitter.firstChild);
@@ -877,10 +929,12 @@ function resetState() {
     }
 }
 
+// Abfrage ob die ausgewaehlte Antwort korrekt war.
+// Außerdem Abfrage, ob das Spiel beendet werden kann
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
-    if (correct) {
+    if(correct) {
         currentQuestionIndex++;
         alert('Richtig!');
         preis = preis + 1;
@@ -902,15 +956,3 @@ function selectAnswer(e) {
 }
 
 startGame();
-
-/*   questionElement.innerText = question.question;
-    question.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('knpf');
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
-        button.addEventListener('click', selectAnswer);
-        answerButtonsElement.appendChild(button);
-    }); */
