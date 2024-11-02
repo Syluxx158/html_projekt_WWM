@@ -741,7 +741,7 @@ const unteresGitter = document.getElementById('knopf-gitterUnten');
 const preisElement = document.getElementById('derzeitiger-preis');
 
 // Initialisieren des Reset-Knopfs und setzen des EventListeners
-const resetKnopf = document.getElementById('resetKnopf').addEventListener('click',endGame);;
+const resetKnopf = document.getElementById('resetKnopf').addEventListener('click',endGame);
 
 // Deklarieren der Variablen
 // Preis

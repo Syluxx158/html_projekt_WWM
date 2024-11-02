@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wer gewinnt den Euro?</title>
+        <link rel="stylesheet" href="style_Game.css">
+    </head>
+    <body>
+    <div class="container-body">
+        <div class="muelljonaer-header">
+            <h1>Wer wird Mülljonär?</h1>
+        </div>
+        <div class="quiz-container">
+            <div class="fragen-container" id="fragen-container">
+                <p id="frage">Frage sollte hier angezeigt werden</p>
+            </div>
+            <div id="knopf-gitterOben" class="knopf-gitterOben">
+                <button class="knpf">Antwort1</button>
+                <button class="knpf">Antwort2</button>
+            </Div>
+            <Div id="knopf-gitterUnten" class="knopf-gitterUnten">
+                <button class="knpf">Antwort3</button>
+                <button class="knpf">Antwort4</button>
+            </div>
+            <div class="gewinnstufe">
+                <p>Aktuelle Gewinnstufe: <span id="derzeitiger-preis">0€</span></p>
+            </div>
+            <div>
+                <button id="resetKnopf">Reset</button>
+            </div>
+            <!--<div id="trumpf-container">
+                <button id="trumpf-5050" class="trumpf-knopf"></button>
+                <button id="trumpf-publikum" class="trumpf-knopf"></button>
+                <button id="trumpf-telefon" class="trumpf-knopf"></button>
+            </div> -->
+        </div>
+    </div>
+    <script src="script_Game.js" defer></script>
+    </body>
+</html>
