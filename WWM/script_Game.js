@@ -740,8 +740,22 @@ const oberesGitter = document.getElementById('knopf-gitterOben');
 const unteresGitter = document.getElementById('knopf-gitterUnten');
 const preisElement = document.getElementById('derzeitiger-preis');
 
-// Initialisieren des Reset-Knopfs und setzen des EventListeners
-const resetKnopf = document.getElementById('resetKnopf').addEventListener('click',endGame);
+// Initialisieren des Reset- und MM-Knopfs und setzen der EventListener
+
+function setMenueButtons(){
+    const menueKnoepfe = document.getElementById('menuebuttons');
+    const resetKnopf = document.getElementById('resetKnopf');
+    resetKnopf.addEventListener('click', endGame);
+    console.log("Eventlistener sollte beim reset drin sein")
+    const backToMainPageKnopf = document.getElementById('backToMainPageKnopf');
+    backToMainPageKnopf.addEventListener('click', backToMainPageFunction);
+
+}
+// back to Main Page Function
+function backToMainPageFunction(){
+    window.location.href = "./html_mainPage_WWM.html";
+    console.log("Funzten")
+}
 
 // Deklarieren der Variablen
 // Preis
@@ -818,12 +832,12 @@ function startGame() {
     
         // Ansetzen der nächsten Frage
     }
+    setMenueButtons();
     setNextQuestion();
 }
 
 // Funktion zum beenden des spiels, leeren der localstorage und neuladen der Seite
 function endGame() {
-    alert('Das Spiel wurde beendet. Dein Preis: ' + preis + ' €');
     localStorage.clear();
     window.location.reload();
 }
@@ -942,8 +956,9 @@ function selectAnswer(e) {
         localStorage.setItem('preis', preis);
     } else {
         alert('Falsch! Das Spiel ist vorbei.');
-        preis = 0;
+        alert('Dein erspieltes Preisgeld beträgt: ' + preis + ' €');
         preisElement.innerText = ""+ preis + " €";
+        preis = 0;
         endGame();
         return;
     }
@@ -953,6 +968,10 @@ function selectAnswer(e) {
         alert('Du hast das Quiz beendet!');
         endGame();
     }
+}
+
+function restart() {
+    
 }
 
 startGame();

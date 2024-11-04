@@ -69,6 +69,22 @@ body {
     align-items: center;
 }
 
+.resetKnopf{
+    transition-duration: 0.4s;
+    background-color: transparent;
+    min-width: 180pt;
+    border: none;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.resetKnopf:hover{
+    background-color: #f39c12;
+}
+
 .knpf {
     transition-duration: 0.4s;
     background-color: transparent;
