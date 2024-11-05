@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #061348;
-    background-image: url(WWM_Background.png);
+    background-image: url('./assets/WWM_Background.png');
     background-position:center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -62,7 +62,7 @@ body {
     display: grid;
     min-width: 100%;
     min-height: 52pt;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(1, 1fr); 
     grid-template-rows: auto; 
     gap: 10pt;
     justify-items: center;

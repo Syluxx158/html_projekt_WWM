@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #061348;
+    background-image: url('./assets/WWM_Background.png');
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    padding: 3%;
+    margin: 0;
+}
+.container-body{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.muelljonaer-header{
+    font-size: 20pt;
+    font-weight: bold;
+    color: white ;
+    text-shadow: 1px 1px 10px black;
+    text-align: center;
+    min-width: 550pt;
+}
+
+.quiz-container {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    border-radius: 20px;
+    max-width: 700pt;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fragen-container{
+    background-color: #061348;
+    justify-items: center;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    font-size: 15pt;
+    min-height: 70pt;
+    max-height: 70pt;
+    max-width: 420pt;
+    min-width: 100%;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.knopf-gitterOben, .knopf-gitterUnten {
+    background-color: black;
+    display: grid;
+    min-width: 100%;
+    min-height: 52pt;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: auto; 
+    gap: 10pt;
+    justify-items: center;
+    align-items: center;
+}
+
+.resetKnopf{
+    transition-duration: 0.4s;
+    background-color: transparent;
+    min-width: 180pt;
+    border: none;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.resetKnopf:hover{
+    background-color: #f39c12;
+}
+
+.knpf {
+    transition-duration: 0.4s;
+    background-color: transparent;
+    min-width: 180pt;
+    border: none;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.knpf:hover{
+    background-color: #f39c12;
+}
+
+.gewinnstufe{
+    font-size: 10pt;
+    background-color: #061348;
+    font-weight: bold;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    color: white ;
+    text-shadow: 1px 1px 10px black;
+    width: 100%;
+    text-align: center;
+    padding-top: 25pt;
+}
+
+.trumpf-knopf {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#progress-container {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#current-prize {
+    font-weight: bold;
+    color: #FFD700;
+}
