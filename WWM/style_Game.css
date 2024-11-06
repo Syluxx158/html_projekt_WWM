@@ -69,19 +69,19 @@ body {
     align-items: center;
 }
 
-.resetKnopf{
-    transition-duration: 0.4s;
-    background-color: transparent;
-    min-width: 180pt;
+.resetKnopf, .backToMainPageKnopf{
+    transition-duration: 0.2s;
+    background-color: grey;
+    min-width: 80pt;
     border: none;
     color: white;
     padding: 15px;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
     border-radius: 5px;
 }
 
-.resetKnopf:hover{
+.resetKnopf:hover, .backToMainPageKnopf:hover{
     background-color: #f39c12;
 }
 
