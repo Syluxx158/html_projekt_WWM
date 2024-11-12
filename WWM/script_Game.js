@@ -238,12 +238,12 @@ const averageQuestions = [
         ]
     },
     {
-        question: 'Welches Metall leitet Elektrizität am besten?',
+        question: "Welches Element ist das leichteste im Periodensystem?",
         answers: [
-            { text: 'Gold', correct: false },
-            { text: 'Kupfer', correct: false },
-            { text: 'Silber', correct: true },
-            { text: 'Aluminium', correct: false }
+            { text: "Helium", correct: false },
+            { text: "Wasserstoff", correct: true },
+            { text: "Lithium", correct: false },
+            { text: "Sauerstoff", correct: false }
         ]
     },
     {
@@ -251,7 +251,7 @@ const averageQuestions = [
         answers: [
             { text: 'Peru', correct: true },
             { text: 'Brasilien', correct: false },
-            { text: 'Argentinien', correct: false },
+            { text: 'Argentinien', correct: false },           
             { text: 'Chile', correct: false }
         ]
     },
@@ -854,8 +854,9 @@ function setQuestions(){
     selectedIndexes = new Set();
     // Fuellen der Question-Arrays -> Solange das Array 5 oder weniger
     // einzigartige Zahlen aufweist, wird das Array befuellt
-    while (selectedIndexes.size <= 5){
+    while (selectedIndexes.size < 5){
         selectedIndexes.add(getRandomIndex());
+        console.log(selectedIndexes)
     }
     
     // Die Question-Arrays werden alle mit Fragen befuellt indem die 
@@ -888,14 +889,14 @@ function setNextQuestion() {
     resetState();
 
     // festlegen anhand des Index', welche Art von Frage eingebaut wird
-    if(currentQuestionIndex >= 14){
+    if(currentQuestionIndex >= 13){
         showQuestion(veryhardQuestionArray[veryHardCounter]);
         veryHardCounter++;}
-    else if(currentQuestionIndex > 10){
+    else if(currentQuestionIndex > 9){
         showQuestion(hardQuestionArray[hardCounter]);
         hardCounter++;
     }
-    else if(currentQuestionIndex > 5){
+    else if(currentQuestionIndex > 4){
         showQuestion(averageQuestionArray[averageCounter]);
         averageCounter++;
     }
@@ -948,11 +949,12 @@ function selectAnswer(e) {
     if(correct) {
         currentQuestionIndex++;
         alert('Richtig!');
-        price = price + 1;
+        if(price < 15)
+            price = price + 1;
         priceElement.innerText = ""+ price + " €";
         localStorage.setItem('price', price);
     } else {
-        alert('Falsch! Das Spiel ist vorbei.');
+        alert('Leider falsch! Das Spiel ist vorbei.');
         alert('Dein erspieltes Preisgeld beträgt: ' + price + ' €');
         priceElement.innerText = ""+ price + " €";
         price = 0;
@@ -963,6 +965,7 @@ function selectAnswer(e) {
         setNextQuestion();
     } else {
         alert('Du hast das Quiz beendet!');
+        alert('Du hast es geschafft! Du gewinnst ' + price + '€!')
         endGame();
     }
 }
