@@ -285,7 +285,7 @@ const averageQuestions = [
     {
         question: 'Welches Tier kann sowohl an Land als auch unter Wasser schlafen?',
         answers: [
-            { text: 'Delfin', correct: true },
+            { text: 'Meeresschildkröte', correct: true },
             { text: 'Hai', correct: false },
             { text: 'Krokodil', correct: false },
             { text: 'Otter', correct: false }
@@ -376,7 +376,7 @@ const hardQuestions = [
         ]
     },
     {
-        question: 'Wer schrieb das Werk "Die Geburtsstunde der Tragödie aus dem Geiste der Musik"?',
+        question: 'Wer schrieb das Werk "Die Geburt der Tragödie aus dem Geiste der Musik"?',
         answers: [
             { text: 'Friedrich Nietzsche', correct: true },
             { text: 'Arthur Schopenhauer', correct: false },
@@ -394,7 +394,7 @@ const hardQuestions = [
         ]
     },
     {
-        question: 'Welche Sprache wurde am "Rosetta Stone" verwendet, um Hieroglyphen zu entziffern?',
+        question: 'Welche Sprache wurde am "Stein von Rosette" verwendet, um Hieroglyphen zu entziffern?',
         answers: [
             { text: 'Latein', correct: false },
             { text: 'Griechisch', correct: true },
@@ -405,9 +405,9 @@ const hardQuestions = [
     {
         question: 'Wer gilt als der "Vater der modernen Physik"?',
         answers: [
-            { text: 'Albert Einstein', correct: true },
             { text: 'Isaac Newton', correct: false },
             { text: 'Galileo Galilei', correct: false },
+            { text: 'Albert Einstein', correct: true },
             { text: 'Niels Bohr', correct: false }
         ]
     },
@@ -423,8 +423,8 @@ const hardQuestions = [
     {
         question: 'In welchem Jahr endete das Römische Reich (westlicher Teil)?',
         answers: [
-            { text: '476 n. Chr.', correct: true },
             { text: '410 n. Chr.', correct: false },
+            { text: '476 n. Chr.', correct: true },
             { text: '395 n. Chr.', correct: false },
             { text: '500 n. Chr.', correct: false }
         ]
@@ -604,11 +604,11 @@ const veryHardQuestions = [
         ]
     },
     {
-        question: 'Welches Tier hat die größte Anzahl an Chromosomenpaaren?',
+        question: 'Welches Lebewesen hat die größte Anzahl an Chromosomenpaaren?',
         answers: [
-            { text: 'Amerikanische Farnpflanze (Ophioglossum reticulatum)', correct: true },
+            { text: 'Amerikanische Farnpflanze', correct: true },
             { text: 'Mensch', correct: false },
-            { text: 'Elefant', correct: false },
+            { text: 'Bergamotte', correct: false },
             { text: 'Blattlaus', correct: false }
         ]
     },
