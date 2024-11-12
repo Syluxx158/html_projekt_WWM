@@ -735,31 +735,29 @@ const veryHardQuestions = [
 let currentQuestionIndex = 0;
 
 // Initialisieren der Doc-Constanten
-const frageElement = document.getElementById('frage');
-const oberesGitter = document.getElementById('knopf-gitterOben');
-const unteresGitter = document.getElementById('knopf-gitterUnten');
-const preisElement = document.getElementById('derzeitiger-preis');
+const questionElement = document.getElementById('question');
+const topGrid = document.getElementById('button-gridTop');
+const bottomGrid = document.getElementById('button-gridBottom');
+const priceElement = document.getElementById('current-price');
 
 // Initialisieren des Reset- und MM-Knopfs und setzen der EventListener
 
 function setMenueButtons(){
-    const menueKnoepfe = document.getElementById('menuebuttons');
-    const resetKnopf = document.getElementById('resetKnopf');
-    resetKnopf.addEventListener('click', endGame);
-    console.log("Eventlistener sollte beim reset drin sein")
-    const backToMainPageKnopf = document.getElementById('backToMainPageKnopf');
-    backToMainPageKnopf.addEventListener('click', backToMainPageFunction);
+    //const menueKnoepfe = document.getElementById('menuebuttons');
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', endGame);
+    const backToMainPageButton = document.getElementById('backToMainPageButton');
+    backToMainPageButton.addEventListener('click', backToMainPageFunction);
 
 }
 // back to Main Page Function
 function backToMainPageFunction(){
     window.location.href = "./html_mainPage_WWM.html";
-    console.log("Funzten")
 }
 
 // Deklarieren der Variablen
 // Preis
-let preis;
+let price;
 // Fragen-Arrays
 let veryhardQuestionArray = [];
 let hardQuestionArray = [];
@@ -778,7 +776,7 @@ let easyCounter;
 
 function startGame() {
     // Localstorage Check
-    const savedPreis = localStorage.getItem('preis');
+    const savedprice = localStorage.getItem('price');
     const savedIndex = localStorage.getItem('currentQuestionIndex');
     
     // Extrahieren des Fragen-Stands aus dem Localstorage
@@ -789,11 +787,11 @@ function startGame() {
     }
     
     // Extrahieren des Gewinns aus dem Localstorage
-    if (savedPreis !== null) {
-        preis = parseInt(savedPreis, 10);
-        preisElement.innerText = "" + preis + " €";
+    if (savedprice !== null) {
+        price = parseInt(savedprice, 10);
+        priceElement.innerText = "" + price + " €";
     } else {
-        preis = 0;
+        price = 0;
     }
 
     // Laden der Fragen aus dem Localstorage
@@ -909,16 +907,16 @@ function setNextQuestion() {
 
 // Funktion zum befuellen des Fragen-containers
 function showQuestion(question) {
-    frageElement.innerText = question.question;
-    const grid1 = document.getElementById('knopf-gitterOben');
-    const grid2 = document.getElementById('knopf-gitterUnten');
+    questionElement.innerText = question.question;
+    const grid1 = document.getElementById('button-gridTop');
+    const grid2 = document.getElementById('button-gridBottom');
     
     // durchlaufen der Antwort-container und befuellen mit neuen Antworten
     for (let i = 0; i < question.answers.length; i++) {
         const answer = question.answers[i];
         const button = document.createElement('button');
         button.innerText = answer.text;
-        button.classList.add('knpf');
+        button.classList.add('btn');
         
         // festlegen der richtigen Antwort
         if (answer.correct) {
@@ -937,28 +935,27 @@ function showQuestion(question) {
 }
 // Funktion zum leeren der Antwort-container
 function resetState() {
-    while (oberesGitter.firstChild || unteresGitter.firstChild) {
-        oberesGitter.removeChild(oberesGitter.firstChild);
-        unteresGitter.removeChild(unteresGitter.firstChild);
+    while (topGrid.firstChild || bottomGrid.firstChild) {
+        topGrid.removeChild(topGrid.firstChild);
+        bottomGrid.removeChild(bottomGrid.firstChild);
     }
 }
 
 // Abfrage ob die ausgewaehlte Antwort korrekt war.
-// Außerdem Abfrage, ob das Spiel beendet werden kann
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
     if(correct) {
         currentQuestionIndex++;
         alert('Richtig!');
-        preis = preis + 1;
-        preisElement.innerText = ""+ preis + " €";
-        localStorage.setItem('preis', preis);
+        price = price + 1;
+        priceElement.innerText = ""+ price + " €";
+        localStorage.setItem('price', price);
     } else {
         alert('Falsch! Das Spiel ist vorbei.');
-        alert('Dein erspieltes Preisgeld beträgt: ' + preis + ' €');
-        preisElement.innerText = ""+ preis + " €";
-        preis = 0;
+        alert('Dein erspieltes Preisgeld beträgt: ' + price + ' €');
+        priceElement.innerText = ""+ price + " €";
+        price = 0;
         endGame();
         return;
     }

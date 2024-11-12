@@ -42,7 +42,7 @@ body {
     justify-content: space-between;
 }
 
-.fragen-container{
+.question-container{
     background-color: #061348;
     justify-items: center;
     border-top-left-radius: 24px;
@@ -57,7 +57,7 @@ body {
     word-wrap: break-word;
 }
 
-.knopf-gitterOben, .knopf-gitterUnten {
+.button-gridTop, .button-gridBottom {
     background-color: black;
     display: grid;
     min-width: 100%;
@@ -69,7 +69,7 @@ body {
     align-items: center;
 }
 
-.resetKnopf, .backToMainPageKnopf{
+.resetButton, .backToMainPageButton{
     transition-duration: 0.2s;
     background-color: grey;
     min-width: 80pt;
@@ -81,11 +81,11 @@ body {
     border-radius: 5px;
 }
 
-.resetKnopf:hover, .backToMainPageKnopf:hover{
+.resetButton:hover, .backToMainPageButton:hover{
     background-color: #f39c12;
 }
 
-.knpf {
+.btn {
     transition-duration: 0.4s;
     background-color: transparent;
     min-width: 180pt;
@@ -97,11 +97,11 @@ body {
     border-radius: 5px;
 }
 
-.knpf:hover{
+.btn:hover{
     background-color: #f39c12;
 }
 
-.gewinnstufe{
+.pricelevel{
     font-size: 10pt;
     background-color: #061348;
     font-weight: bold;
@@ -112,16 +112,6 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 25pt;
-}
-
-.trumpf-knopf {
-    background-color: #f39c12;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
 #progress-container {
